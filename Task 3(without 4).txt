@@ -1,0 +1,14 @@
+def thesaurus(*args) -> dict:
+    dict_out = {}
+    for i in range(len(args)):
+        check_list = []
+        check_list.append(args[i])
+        b = args[i][0]
+        if b in dict_out:
+            dict_out[b] = check_list + list(dict_out[b])
+        else:
+            dict_out[b] = check_list  # результирующий словарь значений
+    return dict_out
+
+
+print(thesaurus("Иван", "Мария", "Петр", "Илья", "Вадим", "Вова", "Метрофан", "Иосиф", "Онтон"))

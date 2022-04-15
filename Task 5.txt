@@ -1,0 +1,53 @@
+import random  # подрубаем библиотеку рандома
+nouns = ["автомобиль", "лес", "огонь", "город", "дом"]  # оригиналы списков
+adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]  #
+adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]  #
+
+
+def get_jokes(count):  # функция для шуток ТОЛЬКО с повторами слов
+    """Возвращает список шуток в количестве count"""
+    list_out = []
+    for i in range(count):
+        a = random.randint(0, len(nouns) - 1)  # рандомим значения для получения элементов из списков
+        b = random.randint(0, len(adverbs) - 1)  #
+        c = random.randint(0, len(adjectives) - 1)  #
+        list_in = [nouns[a] + ' ' + adverbs[b] + ' ' + adjectives[c]]  # юзаем второй список чтобы можно было выводить
+        list_out.extend(list_in)  # добавляем список в список
+    return list_out
+
+
+def get_jokes_adv(count, flag):  # функция для шуток с выбором повтор/без повтора
+    """Возвращает список шуток в количестве count взависимости от значения flag"""
+    list_out = []
+    if flag == 1:  # условия для повтора слов
+        for i in range(count):
+            a = random.randint(0, len(nouns) - 1)  # рандомим значения для получения элементов из списков
+            b = random.randint(0, len(adverbs) - 1)  #
+            c = random.randint(0, len(adjectives) - 1)  #
+            list_in = [nouns[a] + ' ' + adverbs[b] + ' ' + adjectives[c]]  # юзаем второй список чтобы можно было выводить
+            list_out.extend(list_in)  # добавляем список в список
+        return list_out
+    elif flag == 0 and count <= len(nouns):  # условие для безповторного вывода
+        copy_nouns = nouns.copy()  # копируем списки т.к будем удалять элементы, чтобы избежать повтора слов
+        copy_adverbs = adverbs.copy()  #
+        copy_adjectives = adjectives.copy()  #
+        for i in range(count):
+            a = random.randint(0, len(copy_nouns) - 1)  # рандомим значения для получения элементов из списков
+            b = random.randint(0, len(copy_adverbs) - 1)  #
+            c = random.randint(0, len(copy_adjectives) - 1)  #
+            list_in = [copy_nouns[a] + ' ' + copy_adverbs[b] + ' ' + copy_adjectives[c]]  # юзаем второй список чтобы можно было выводить
+            list_out.extend(list_in)  # добавляем список в список
+            copy_nouns.remove(copy_nouns[a])  # удаляем (из копии), добавленное в список, слово, чтобы избежать повтора
+            copy_adverbs.remove(copy_adverbs[b])  #
+            copy_adjectives.remove(copy_adjectives[c])  #
+        return list_out
+    else:  # если пальцы упали не на те кнопки
+        print('Корректно введите значения')
+
+
+print(get_jokes_adv(6, 1))  # второй аргумент - флаг. Значение 1 разрешает повторы слов / значение 0 запрещает повторы слов
+print(get_jokes_adv(5, 5))
+print(get_jokes_adv(5, 0))
+print(get_jokes_adv(6, 0))
+print(get_jokes_adv(10, 1))
+# Если запретить повтор слов (flag = 0), то кол-во шуток должно быть не больше слов записанных в оригинальных списках(кол-во слов в списках должно быть одинаковым, т.к условие ссылается на длину одного их этих 3 списков(nouns))
