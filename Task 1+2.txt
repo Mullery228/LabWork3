@@ -1,0 +1,26 @@
+numbers_1 = {'null': 'ноль', 'Null': 'Ноль',
+          'one': 'один', 'One': 'Один',
+          'two': 'два', 'Two': 'Два',
+          'three': 'три', 'Three': 'Три',
+          'four': 'четыре', 'Four': 'Четыре',
+          'five': 'пять', 'Five': 'Пять',
+          'six': 'шесть', 'Six': 'Шесть',
+          'seven': 'семь', 'Seven': 'Семь',
+          'eight': 'восемь', 'Eight': 'Восемь',
+          'nine': 'девять', 'Nine': 'Девять',
+          'ten': 'десять', 'Ten': 'Десять'}
+
+
+def num_translate_adv(a: str) -> str:
+    """переводит числительное с английского на русский"""
+    if a in numbers_1: # проверяем на наличии в словаре
+        str_out = numbers_1[a]
+        return str_out
+    else:
+        None
+
+
+print(num_translate_adv('null'))
+print(num_translate_adv('ten'))
+print(num_translate_adv('One'))
+print(num_translate_adv('ToN'))
